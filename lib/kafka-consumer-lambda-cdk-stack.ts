@@ -57,6 +57,8 @@ export class KafkaConsumerLambdaCdkStack extends cdk.Stack {
   customRole.addToPolicy(listScramSecretPolicy);
 
     const handler = new lambda.Function(this, "KafkaConsumer", {
+      functionName: 'KafkaConsumerSendDataToDynamoDB',
+      description: 'This is Kafka Consumer and it puts data to Dynamo DB',
       runtime: lambda.Runtime.NODEJS_14_X,
       code: lambda.Code.fromAsset("resources"),
       handler: "index.handler",
